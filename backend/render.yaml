@@ -15,7 +15,7 @@ services:
       - key: DJANGO_SECRET_KEY
         generateValue: true
       - key: FRONTEND_URL
-        sync: false
+        value: "https://conference-frontend-two.vercel.app"
       - key: ADMIN_USERNAME
         value: "damedzie4"
       - key: ADMIN_EMAIL
@@ -28,5 +28,6 @@ services:
           property: connectionString
 databases:
   - name: gather-registration-db
+    plan: 0.1c-256mb
     databaseName: gather_registrations
     user: gather_registrations
