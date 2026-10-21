@@ -1,0 +1,122 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="/asset/NST%20LOGO.png">
+  <title>Overview · NST Register</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles (glass.css must stay last) -->
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/dashboard.css">
+  <link rel="stylesheet" href="/static/css/glass.css">
+</head>
+
+<body>
+
+  <!-- Global loader (used by loading.js) -->
+  <div id="global-loader" class="loading-overlay" role="status" aria-live="polite" aria-hidden="true">
+    <div class="loading-brand">
+      <img class="loading-logo" src="/asset/NST%20LOGO.png" alt="">
+      <strong class="loading-name">NST Register</strong>
+      <span class="loading-caption">Please wait</span>
+      <span class="loading-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    </div>
+  </div>
+
+  <div class="app-shell">
+    <aside id="sidebar"></aside>
+
+    <main class="main-area">
+      <header id="topbar"></header>
+
+      <div class="page-content">
+
+        <!-- Welcome -->
+        <div class="welcome-row">
+          <div>
+            <span class="eyebrow">YOUR EVENT AT A GLANCE</span>
+            <h1>Good day, <span id="welcome-name">there</span> <span class="wave">✳</span></h1>
+            <p class="muted">Here’s what’s happening with your registrations. <span class="refresh-status"><i></i> Live updates every 15 seconds</span></p>
+          </div>
+          <a class="button button-primary" href="/register/">＋ Register attendee</a>
+        </div>
+
+        <!-- Stats -->
+        <section class="stats-grid">
+
+          <article class="stat-card stat-dark">
+            <div class="stat-top">
+              <span>Total revenue</span>
+              <span class="stat-icon">↗</span>
+            </div>
+            <strong id="total-revenue">GH₵0</strong>
+            <span class="stat-caption">From all registrations</span>
+            <div class="stat-spark">⌁</div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Registered attendees</span>
+              <span class="stat-icon icon-lime">♧</span>
+            </div>
+            <strong id="total-attendees">0</strong>
+            <span class="stat-caption">At GH₵150 per ticket</span>
+            <a class="stat-bottom" href="/attendees/">All registrations <span>→</span></a>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Registered today</span>
+              <span class="stat-icon icon-peach">◷</span>
+            </div>
+            <strong id="today-attendees">0</strong>
+            <span class="stat-caption">New arrivals today</span>
+            <a class="stat-bottom" href="/attendees/">View attendees <span>→</span></a>
+          </article>
+
+        </section>
+
+        <!-- Recent registrations -->
+        <section class="section-card recent-card">
+          <div class="section-heading">
+            <div>
+              <h2>Recent registrations</h2>
+              <p class="muted">The latest people to join your event</p>
+            </div>
+            <a class="text-link" href="/attendees/">View all <span>→</span></a>
+          </div>
+
+          <div id="recent-list" class="recent-list">
+            <div class="loading">Loading registrations…</div>
+          </div>
+        </section>
+
+        <!-- Footer note -->
+        <div class="dashboard-footer">
+          <span>Ticket price</span>
+          <strong>GH₵ 150.00</strong>
+          <span class="footer-sep">·</span>
+          <span>Keep the welcome warm.</span>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/config.js"></script>
+  <script src="/static/js/loading.js"></script>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/components/sidebar.js"></script>
+  <script src="/static/js/components/topbar.js"></script>
+  <script src="/static/js/dashboard.js"></script>
+</body>
+
+</html>

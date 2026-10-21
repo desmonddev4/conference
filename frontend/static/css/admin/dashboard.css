@@ -1,0 +1,443 @@
+﻿/* ==========================================================================
+   NST Register · Admin overview page
+   Glass-style stat cards, latest registrations, payment mix and shortcuts.
+   Works together with glass.css (the shared background, buttons and
+   hover effects), which should be linked after this file.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Welcome row
+   -------------------------------------------------------------------------- */
+.admin-page {
+  padding-top: 43px;
+}
+
+.admin-welcome {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.admin-welcome h1 {
+  margin-top: 8px;
+}
+
+.admin-welcome p {
+  font-size: 12px;
+}
+
+.admin-welcome .button {
+  height: 40px;
+  font-size: 11px;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. Stat cards
+   -------------------------------------------------------------------------- */
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.admin-stat {
+  position: relative;
+  overflow: hidden;
+  min-height: 139px;
+  padding: 17px;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.58);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+          backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 10px 34px rgba(31, 50, 140, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.admin-stat > span {
+  display: block;
+  font-size: 11px;
+  color: #6b7692;
+}
+
+.admin-stat > strong {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-top: 17px;
+  font-size: 26px;
+  letter-spacing: -0.7px;
+}
+
+.admin-stat > small {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-top: 5px;
+  font-size: 10px;
+  color: #76809b;
+}
+
+/* Large soft icon in the corner of each card */
+.admin-stat > i {
+  position: absolute;
+  right: 13px;
+  bottom: -6px;
+  font: 800 54px var(--serif);
+  font-style: normal;
+  color: rgba(77, 124, 255, 0.12);
+}
+
+/* The revenue card stays deep blue, with a cyan glow in the corner */
+.admin-stat-green {
+  border-color: rgba(255, 255, 255, 0.3);
+  background-color: #172f95;
+  background-image:
+    radial-gradient(240px circle at 100% 0%, rgba(25, 198, 235, 0.35), transparent 65%),
+    linear-gradient(135deg, rgba(24, 64, 190, 0.95), rgba(96, 62, 214, 0.9));
+  box-shadow: 0 18px 44px rgba(52, 70, 210, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.38);
+  color: #fff;
+}
+
+.admin-stat-green > span,
+.admin-stat-green > small {
+  color: #d3def7;
+}
+
+.admin-stat-green > i {
+  right: 13px;
+  bottom: 4px;
+  font-size: 40px;
+  color: rgba(255, 255, 255, 0.12);
+}
+
+
+/* --------------------------------------------------------------------------
+   3. Latest registrations and payment mix
+   -------------------------------------------------------------------------- */
+.admin-content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(270px, 0.8fr);
+  gap: 14px;
+  margin-top: 17px;
+}
+
+.admin-recent,
+.admin-payments {
+  padding: 19px 20px;
+}
+
+.admin-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.admin-section-heading h2 {
+  font-size: 14px;
+}
+
+.admin-section-heading p {
+  font-size: 10px;
+}
+
+.admin-section-heading .text-link {
+  font-size: 10px;
+}
+
+/* Negative margin lets the hover highlight breathe without moving the text */
+.admin-person {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 55px;
+  margin: 0 -10px;
+  padding: 0 10px;
+  border-top: 1px solid rgba(31, 50, 140, 0.08);
+  border-radius: 12px;
+  transition: background 0.2s;
+}
+
+.admin-person:hover {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.admin-person-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.admin-person-copy strong {
+  font: 600 10px var(--sans);
+}
+
+.admin-person-copy small {
+  font-size: 9px;
+  color: #76809b;
+}
+
+.admin-person .attendee-avatar {
+  width: 30px;
+  height: 30px;
+  font-size: 9px;
+}
+
+.admin-person .payment-badge {
+  padding: 5px 7px;
+  font-size: 8px;
+}
+
+.admin-person-amount {
+  min-width: 74px;
+  font: 600 10px var(--sans);
+  text-align: right;
+}
+
+.admin-empty {
+  margin-bottom: 8px;
+  padding: 27px 5px;
+  border: 1px dashed rgba(77, 124, 255, 0.3);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.35);
+  font-size: 10px;
+  text-align: center;
+  color: #76809b;
+}
+
+.admin-empty .text-link {
+  display: block;
+  margin-top: 9px;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. Payment mix
+   -------------------------------------------------------------------------- */
+.admin-method {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 17px 0 8px;
+}
+
+.admin-method-icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.momo-icon {
+  background: rgba(122, 77, 255, 0.12);
+  color: #7135d1;
+}
+
+.cash-icon {
+  background: rgba(77, 124, 255, 0.12);
+  color: #2854ce;
+}
+
+.admin-method-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.admin-method-copy strong {
+  font: 600 10px var(--sans);
+}
+
+.admin-method-copy small {
+  font-size: 9px;
+  color: #76809b;
+}
+
+.admin-method > strong {
+  font: 600 10px var(--sans);
+}
+
+/* Bars: the width is set by the page script */
+.admin-meter {
+  height: 5px;
+  margin: 0 0 12px 37px;
+  overflow: hidden;
+  border-radius: 5px;
+  background: rgba(31, 50, 140, 0.08);
+}
+
+.admin-meter span {
+  display: block;
+  height: 100%;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #7a4dff, #a186e5);
+  box-shadow: 0 0 10px rgba(122, 77, 255, 0.45);
+  transition: width 0.25s;
+}
+
+.admin-meter:last-of-type span {
+  background: linear-gradient(90deg, #3f78f2, #19c6eb);
+  box-shadow: 0 0 10px rgba(25, 198, 235, 0.45);
+}
+
+.admin-revenue-link {
+  display: block;
+  margin-top: 19px;
+  font-size: 10px;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. Shortcuts
+   -------------------------------------------------------------------------- */
+.admin-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.admin-shortcuts > a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 65px;
+  padding: 11px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.58);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+          backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 10px 34px rgba(31, 50, 140, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.3s;
+}
+
+.admin-shortcuts > a:hover {
+  transform: translateY(-3px);
+  border-color: rgba(77, 124, 255, 0.45);
+  box-shadow: 0 16px 36px rgba(52, 70, 210, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.admin-shortcuts > a:focus-visible {
+  outline: 2px solid #4d7cff;
+  outline-offset: 3px;
+}
+
+.shortcut-mark {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  background: rgba(77, 124, 255, 0.12);
+  color: #2957dc;
+  font-size: 14px;
+  transition: background 0.25s, color 0.25s;
+}
+
+/* The icon fills with the brand gradient on hover */
+.admin-shortcuts > a:hover .shortcut-mark {
+  background: linear-gradient(135deg, #3f78f2, #7a4dff);
+  color: #fff;
+}
+
+.admin-shortcuts > a > span:nth-child(2) {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-shortcuts strong {
+  font: 600 10px var(--sans);
+}
+
+.admin-shortcuts small {
+  font-size: 9px;
+  color: #76809b;
+}
+
+.admin-shortcuts b {
+  font-size: 13px;
+  font-weight: 400;
+  color: #6f7fb0;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.admin-shortcuts > a:hover b {
+  transform: translateX(4px);
+}
+
+
+/* --------------------------------------------------------------------------
+   6. Smaller screens
+   -------------------------------------------------------------------------- */
+@media (max-width: 1000px) {
+  .admin-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin-content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .admin-welcome {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  .admin-stats {
+    gap: 8px;
+  }
+
+  .admin-stat {
+    min-height: 128px;
+    padding: 14px;
+  }
+
+  .admin-stat > strong {
+    font-size: 22px;
+  }
+
+  .admin-shortcuts {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-person {
+    gap: 6px;
+    margin: 0 -6px;
+    padding: 0 6px;
+  }
+
+  .admin-person .payment-badge {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-person,
+  .admin-meter span,
+  .shortcut-mark,
+  .admin-shortcuts > a,
+  .admin-shortcuts b {
+    transition: none;
+  }
+
+  .admin-shortcuts > a:hover,
+  .admin-shortcuts > a:hover b {
+    transform: none;
+  }
+}

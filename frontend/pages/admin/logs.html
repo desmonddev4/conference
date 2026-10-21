@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" type="image/png" href="/asset/NST%20LOGO.png">
+  <title>Activity logs · NST Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/admin/logs.css">
+  <link rel="stylesheet" href="/static/css/glass.css">
+</head>
+<body>
+  <div id="global-loader" class="loading-overlay" role="status" aria-live="polite" aria-hidden="true">
+    <div class="loading-brand"><img class="loading-logo" src="/asset/NST%20LOGO.png" alt=""><strong class="loading-name">NST Register</strong><span class="loading-caption">Please wait</span><span class="loading-dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+  </div>
+  <div class="app-shell">
+    <aside id="sidebar"></aside>
+    <main class="main-area">
+      <header id="topbar"></header>
+      <div class="page-content logs-page">
+        <div class="logs-heading">
+          <div><span class="eyebrow">ACCOUNTABILITY</span><h1>Activity logs</h1><p class="muted">Review registration changes made by your admin and front desk team.</p></div>
+          <div class="logs-total"><strong id="logs-total">0</strong><span>recorded actions</span></div>
+        </div>
+        <section class="section-card logs-card">
+          <div class="logs-toolbar">
+          <div><h2>Registration history</h2><p>Creation, edits, and deletions are recorded with the account that made them. This page refreshes every 15 seconds.</p></div>
+            <div class="logs-filters">
+              <label class="visually-hidden" for="log-search">Search activity</label>
+              <input id="log-search" type="search" placeholder="Search attendee or user">
+              <label class="visually-hidden" for="log-action">Filter action type</label>
+              <select id="log-action"><option value="">All activity</option><option value="created">Created</option><option value="updated">Edited</option><option value="deleted">Deleted</option></select>
+            </div>
+          </div>
+          <div class="logs-table-wrap">
+            <table class="logs-table">
+              <thead><tr><th>ACTION</th><th>ATTENDEE</th><th>CHANGE DETAILS</th><th>PERFORMED BY</th><th>DATE & TIME</th></tr></thead>
+              <tbody id="logs-rows"><tr><td colspan="5" class="logs-empty">Loading activity...</td></tr></tbody>
+            </table>
+          </div>
+          <div class="logs-footer"><span id="logs-page-summary">Showing recent activity</span><div><button id="logs-previous" class="page-button" type="button" disabled>← Previous</button><button id="logs-next" class="page-button" type="button" disabled>Next →</button></div></div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script src="/config.js"></script>
+  <script src="/static/js/loading.js"></script>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/components/sidebar.js"></script>
+  <script src="/static/js/components/topbar.js"></script>
+  <script src="/static/js/admin/logs.js"></script>
+</body>
+</html>

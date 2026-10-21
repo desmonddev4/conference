@@ -1,0 +1,506 @@
+﻿/* ==========================================================================
+   NST Register · Login page
+   Glass-style UI over a soft gradient background
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design tokens
+   -------------------------------------------------------------------------- */
+.login-body {
+  --bg-deep: #0a1048;
+  --bg-mid: #121c72;
+  --accent-blue: #4d7cff;
+  --accent-violet: #7a4dff;
+  --accent-cyan: #19c6eb;
+
+  --text-strong: #ffffff;
+  --text-soft: #c9d7f3;
+  --text-muted: rgba(201, 215, 243, 0.62);
+
+  --glass-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05));
+  --glass-border: rgba(255, 255, 255, 0.22);
+  --glass-blur: blur(24px) saturate(160%);
+  --glass-shadow: 0 24px 60px rgba(4, 8, 40, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  margin: 0;
+  background: linear-gradient(160deg, var(--bg-deep) 0%, var(--bg-mid) 55%, #1b1670 100%);
+  color: var(--text-strong);
+  font-family: "DM Sans", system-ui, sans-serif;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. Gradient background
+   -------------------------------------------------------------------------- */
+.login-bg {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.55;
+  animation: drift 22s ease-in-out infinite alternate;
+}
+
+.blob-blue {
+  width: 560px;
+  height: 560px;
+  top: -160px;
+  left: -140px;
+  background: radial-gradient(circle, var(--accent-blue), transparent 70%);
+}
+
+.blob-violet {
+  width: 520px;
+  height: 520px;
+  right: -120px;
+  bottom: -140px;
+  background: radial-gradient(circle, var(--accent-violet), transparent 70%);
+  animation-duration: 28s;
+  animation-delay: -6s;
+}
+
+.blob-cyan {
+  width: 380px;
+  height: 380px;
+  top: 38%;
+  left: 38%;
+  opacity: 0.32;
+  background: radial-gradient(circle, var(--accent-cyan), transparent 70%);
+  animation-duration: 34s;
+  animation-delay: -12s;
+}
+
+/* Fine noise keeps the gradient from banding */
+.bg-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(50px, 36px, 0) scale(1.1); }
+}
+
+
+/* --------------------------------------------------------------------------
+   3. Page layout
+   -------------------------------------------------------------------------- */
+.login-shell {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(380px, 45%) 1fr;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. Left side: brand and message
+   -------------------------------------------------------------------------- */
+.login-art {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 35px 42px;
+  color: var(--text-strong);
+}
+
+.brand-light {
+  position: relative;
+  z-index: 2;
+  color: var(--text-strong);
+}
+
+.art-copy {
+  position: relative;
+  z-index: 2;
+  margin: 0 0 19% 7%;
+}
+
+.art-copy .eyebrow {
+  color: #bdcaf5;
+}
+
+.art-copy h1 {
+  margin: 17px 0 16px;
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(43px, 5.5vw, 72px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: var(--text-strong);
+}
+
+.art-copy p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-soft);
+}
+
+.art-foot {
+  position: relative;
+  z-index: 2;
+  font-size: 10px;
+  color: #c7d4f2;
+}
+
+.art-foot span {
+  color: var(--accent-cyan);
+}
+
+/* Decorative rings */
+.art-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.orb-one {
+  width: 430px;
+  height: 430px;
+  right: -145px;
+  top: 21%;
+  border: 1px solid rgba(117, 159, 255, 0.2);
+  box-shadow:
+    0 0 0 44px rgba(117, 159, 255, 0.035),
+    0 0 0 90px rgba(117, 159, 255, 0.025);
+}
+
+.orb-two {
+  width: 260px;
+  height: 260px;
+  right: -30px;
+  top: 31%;
+  background: radial-gradient(circle at 30% 30%, rgba(18, 202, 244, 0.25), rgba(116, 55, 234, 0.05) 70%);
+}
+
+
+/* --------------------------------------------------------------------------
+   5. Right side: glass sign-in card
+   -------------------------------------------------------------------------- */
+.login-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 45px;
+}
+
+.login-card {
+  position: relative;
+  width: min(100%, 420px);
+  padding: 38px 36px 32px;
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+/* Soft light edge across the top of the card */
+.login-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.55), transparent 40%, transparent 70%, rgba(25, 198, 235, 0.35));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+
+.login-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 70px rgba(4, 8, 40, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.32);
+}
+
+.login-card > .eyebrow {
+  display: inline-block;
+  padding: 5px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #d4defa;
+}
+
+.login-card h2 {
+  margin: 14px 0 8px;
+  font-family: "Manrope", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+}
+
+.login-intro {
+  margin: 0 0 28px;
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+.login-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-card form > label {
+  margin: 0 0 7px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e3eaff;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. Glass inputs
+   -------------------------------------------------------------------------- */
+.login-card input {
+  height: 47px;
+  margin-bottom: 19px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  outline: 0;
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  color: var(--text-strong);
+  font: inherit;
+  font-size: 14px;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+
+.login-card input::placeholder {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.login-card input:hover {
+  border-color: rgba(255, 255, 255, 0.34);
+  background: rgba(255, 255, 255, 0.11);
+}
+
+.login-card input:focus {
+  border-color: rgba(120, 165, 255, 0.9);
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 0 0 4px rgba(77, 124, 255, 0.25);
+}
+
+/* Keep browser autofill from turning the inputs white */
+.login-card input:-webkit-autofill {
+  -webkit-text-fill-color: #fff;
+  caret-color: #fff;
+  box-shadow: 0 0 0 100px rgba(40, 56, 170, 0.9) inset;
+  transition: background-color 9999s ease-out;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. Glass button with hover effects
+   -------------------------------------------------------------------------- */
+.login-body .login-submit {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 49px;
+  margin-top: 4px;
+  padding: 0 20px;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(88, 140, 255, 0.85), rgba(122, 77, 255, 0.75));
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+  box-shadow:
+    0 10px 26px rgba(60, 80, 230, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), filter 0.25s var(--ease);
+}
+
+/* Light sweep that crosses the button on hover */
+.login-body .login-submit::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s var(--ease);
+}
+
+.login-body .login-submit span {
+  margin-left: auto;
+  font-size: 17px;
+  transition: transform 0.25s var(--ease);
+}
+
+.login-body .login-submit:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow:
+    0 16px 36px rgba(80, 100, 255, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.login-body .login-submit:hover::before {
+  left: 130%;
+}
+
+.login-body .login-submit:hover span {
+  transform: translateX(5px);
+}
+
+.login-body .login-submit:active {
+  transform: translateY(0) scale(0.98);
+  filter: brightness(0.96);
+}
+
+.login-body .login-submit:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.login-body .login-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. Messages and footer
+   -------------------------------------------------------------------------- */
+.form-error {
+  min-height: 14px;
+  margin: -7px 0 12px;
+  font-size: 12px;
+  color: #ffb4ad;
+}
+
+.login-note {
+  margin: 20px 0 0;
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.panel-foot {
+  position: absolute;
+  bottom: 22px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* The brand sits in the left column, so the mobile copy is not needed */
+.mobile-brand {
+  display: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   9. Fallback when backdrop-filter is not supported
+   -------------------------------------------------------------------------- */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .login-card {
+    background: rgba(24, 36, 130, 0.88);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   10. Mobile
+   -------------------------------------------------------------------------- */
+@media (max-width: 760px) {
+  .login-shell {
+    display: block;
+  }
+
+  .login-art {
+    min-height: 205px;
+    padding: 23px 24px;
+  }
+
+  .art-copy {
+    margin: 25px 0 25px;
+  }
+
+  .art-copy h1 {
+    margin: 10px 0;
+    font-size: 39px;
+  }
+
+  .art-copy p {
+    font-size: 12px;
+  }
+
+  .art-foot {
+    display: none;
+  }
+
+  .art-orb {
+    right: -110px;
+    top: -35px;
+    transform: scale(0.55);
+  }
+
+  .login-panel {
+    padding: 8px 18px 42px;
+  }
+
+  .login-card {
+    padding: 30px 24px 26px;
+  }
+
+  .panel-foot {
+    position: static;
+    margin-top: 28px;
+  }
+
+  .blob-blue,
+  .blob-violet {
+    width: 360px;
+    height: 360px;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   11. Reduced motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .bg-blob {
+    animation: none;
+  }
+
+  .login-card,
+  .login-body .login-submit,
+  .login-body .login-submit::before,
+  .login-body .login-submit span {
+    transition: none;
+  }
+}

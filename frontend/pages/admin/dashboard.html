@@ -1,0 +1,165 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="/asset/NST%20LOGO.png">
+  <title>Admin overview · NST Register</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles (glass.css must stay last) -->
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/admin/dashboard.css">
+  <link rel="stylesheet" href="/static/css/glass.css">
+</head>
+
+<body>
+
+  <!-- Global loader (used by loading.js) -->
+  <div id="global-loader" class="loading-overlay" role="status" aria-live="polite" aria-hidden="true">
+    <div class="loading-brand">
+      <img class="loading-logo" src="/asset/NST%20LOGO.png" alt="">
+      <strong class="loading-name">NST Register</strong>
+      <span class="loading-caption">Please wait</span>
+      <span class="loading-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    </div>
+  </div>
+
+  <div class="app-shell">
+    <aside id="sidebar"></aside>
+
+    <main class="main-area">
+      <header id="topbar"></header>
+
+      <div class="page-content admin-page">
+
+        <!-- Welcome -->
+        <div class="admin-welcome">
+          <div>
+            <span class="eyebrow">ADMINISTRATION</span>
+            <h1>Admin overview</h1>
+            <p class="muted">Conference performance, attendance, and account access. <span class="refresh-status"><i></i> Live updates every 15 seconds</span></p>
+          </div>
+          <a class="button button-primary" href="/admin/team/">Manage team <span>→</span></a>
+        </div>
+
+        <!-- Stats -->
+        <section class="admin-stats">
+
+          <article class="admin-stat admin-stat-green">
+            <span>Total revenue</span>
+            <strong id="admin-revenue">GHS 0.00</strong>
+            <small>Collected across all registrations</small>
+            <i aria-hidden="true">GHS</i>
+          </article>
+
+          <article class="admin-stat">
+            <span>Attendees registered</span>
+            <strong id="admin-attendees">0</strong>
+            <small>Fixed ticket price: GHS 150</small>
+            <i aria-hidden="true">♧</i>
+          </article>
+
+          <article class="admin-stat">
+            <span>Registered today</span>
+            <strong id="admin-today">0</strong>
+            <small>New check-ins today</small>
+            <i aria-hidden="true">◷</i>
+          </article>
+
+          <article class="admin-stat">
+            <span>Team accounts</span>
+            <strong id="admin-team-count">0</strong>
+            <small>People with system access</small>
+            <i aria-hidden="true">♙</i>
+          </article>
+
+        </section>
+
+        <!-- Latest registrations and payment mix -->
+        <div class="admin-content-grid">
+
+          <section class="section-card admin-recent">
+            <div class="admin-section-heading">
+              <div>
+                <h2>Latest registrations</h2>
+                <p class="muted">Recent attendee check-ins</p>
+              </div>
+              <a class="text-link" href="/attendees/">All attendees →</a>
+            </div>
+            <div id="admin-recent-list" class="admin-recent-list">
+              <div class="loading">Loading registrations...</div>
+            </div>
+          </section>
+
+          <section class="section-card admin-payments">
+            <div class="admin-section-heading">
+              <div>
+                <h2>Payment mix</h2>
+                <p class="muted">Collected by payment method</p>
+              </div>
+            </div>
+
+            <div class="admin-method">
+              <span class="admin-method-icon momo-icon">M</span>
+              <span class="admin-method-copy">
+                <strong>Mobile money</strong>
+                <small id="admin-momo-count">0 payments</small>
+              </span>
+              <strong id="admin-momo-total">GHS 0.00</strong>
+            </div>
+            <div class="admin-meter"><span id="admin-momo-bar"></span></div>
+
+            <div class="admin-method">
+              <span class="admin-method-icon cash-icon">C</span>
+              <span class="admin-method-copy">
+                <strong>Cash</strong>
+                <small id="admin-cash-count">0 payments</small>
+              </span>
+              <strong id="admin-cash-total">GHS 0.00</strong>
+            </div>
+            <div class="admin-meter"><span id="admin-cash-bar"></span></div>
+
+            <a class="text-link admin-revenue-link" href="/revenue/">Open revenue report →</a>
+          </section>
+
+        </div>
+
+        <!-- Shortcuts -->
+        <section class="admin-shortcuts">
+          <a href="/admin/team/">
+            <span class="shortcut-mark">+</span>
+            <span><strong>Manage team access</strong><small>Add or review staff accounts</small></span>
+            <b>→</b>
+          </a>
+          <a href="/register/">
+            <span class="shortcut-mark">＋</span>
+            <span><strong>Register an attendee</strong><small>Open the walk-in form</small></span>
+            <b>→</b>
+          </a>
+          <a href="/attendees/">
+            <span class="shortcut-mark">♧</span>
+            <span><strong>Review attendee list</strong><small>Search payment and contact details</small></span>
+            <b>→</b>
+          </a>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/config.js"></script>
+  <script src="/static/js/loading.js"></script>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/components/sidebar.js"></script>
+  <script src="/static/js/components/topbar.js"></script>
+  <script src="/static/js/admin/dashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+{
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://gather-registration-api.onrender.com/api/:path*" },
+    { "source": "/", "destination": "/pages/dashboard.html" },
+    { "source": "/login", "destination": "/pages/login.html" },
+    { "source": "/admin/dashboard", "destination": "/pages/admin/dashboard.html" },
+    { "source": "/register", "destination": "/pages/register.html" },
+    { "source": "/attendees", "destination": "/pages/attendees.html" },
+    { "source": "/revenue", "destination": "/pages/revenue.html" },
+    { "source": "/admin/team", "destination": "/pages/admin/team.html" },
+    { "source": "/admin/logs", "destination": "/pages/admin/logs.html" }
+  ]
+}

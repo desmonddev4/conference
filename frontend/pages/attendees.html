@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" type="image/png" href="/asset/NST%20LOGO.png">
+  <title>Attendees · NST Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/attendees.css">
+  <link rel="stylesheet" href="/static/css/glass.css">
+</head>
+<body>
+  <div id="global-loader" class="loading-overlay" role="status" aria-live="polite" aria-hidden="true">
+    <div class="loading-brand">
+      <img class="loading-logo" src="/asset/NST%20LOGO.png" alt="">
+      <strong class="loading-name">NST Register</strong>
+      <span class="loading-caption">Please wait</span>
+      <span class="loading-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    </div>
+  </div>
+  <div class="app-shell">
+    <aside id="sidebar"></aside>
+    <main class="main-area">
+      <header id="topbar"></header>
+      <div class="page-content attendees-page">
+        <div class="attendees-title">
+          <div>
+            <span class="eyebrow">YOUR GUEST LIST</span>
+            <h1>Attendees</h1>
+            <p class="muted">Everyone registered for this conference, all in one place.</p>
+          </div>
+          <a class="button button-primary" href="/register/">＋ Register attendee</a>
+        </div>
+        <p id="attendee-feedback" class="attendee-feedback" role="status" aria-live="polite"></p>
+        <section class="section-card attendees-card">
+          <div class="table-toolbar">
+            <div>
+              <h2>All attendees <span id="attendee-count" class="count-pill">0</span></h2>
+              <p>Registration details and payment records</p>
+            </div>
+            <div class="search-box"><span>⌕</span><input id="attendee-search" type="search" placeholder="Search name or phone…"></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>ATTENDEE</th><th>PHONE NUMBER</th><th>PAYMENT</th><th>AMOUNT PAID</th><th>REGISTERED BY</th><th>DATE</th><th>ACTIONS</th></tr></thead>
+              <tbody id="attendee-rows"><tr><td colspan="7" class="loading">Loading attendees…</td></tr></tbody>
+            </table>
+          </div>
+          <div id="empty-state" class="empty-state" hidden><span>♧</span><strong>No attendees found</strong><p>Try another search or add a new attendee.</p><a class="text-link" href="/register/">Register your first attendee →</a></div>
+          <div class="table-foot"><span id="table-summary">Showing 0 attendees</span><span>Ticket price <strong>GH₵ 150.00</strong></span></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="attendee-edit-dialog" class="attendee-dialog" aria-labelledby="edit-dialog-title">
+    <form id="attendee-edit-form">
+      <div class="edit-dialog-heading">
+        <div><span class="eyebrow">UPDATE REGISTRATION</span><h2 id="edit-dialog-title">Edit attendee</h2></div>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button>
+      </div>
+      <label for="edit-name">Full name</label>
+      <input id="edit-name" name="name" maxlength="160" required>
+      <label for="edit-phone">Phone number</label>
+      <input id="edit-phone" name="phone_number" type="tel" maxlength="20" required>
+      <label for="edit-payment">Payment method</label>
+      <select id="edit-payment" name="payment_method" required><option value="momo">Mobile money</option><option value="cash">Cash</option></select>
+      <div class="fixed-amount"><span>Ticket amount</span><strong>GH₵ 150.00</strong></div>
+      <p id="edit-message" class="edit-message" role="alert"></p>
+      <div class="dialog-actions"><button class="button button-quiet" type="button" data-close-dialog>Cancel</button><button id="save-attendee" class="button button-primary" type="submit">Save changes</button></div>
+    </form>
+  </dialog>
+
+  <script src="/config.js"></script>
+  <script src="/static/js/loading.js"></script>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/components/sidebar.js"></script>
+  <script src="/static/js/components/topbar.js"></script>
+  <script src="/static/js/attendees.js"></script>
+</body>
+</html>

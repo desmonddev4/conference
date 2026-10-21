@@ -1,0 +1,99 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="/asset/NST%20LOGO.png">
+  <title>Sign in · NST Register</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/login.css">
+</head>
+
+<body class="login-body">
+
+  <!-- Global loader (used by loading.js) -->
+  <div id="global-loader" class="loading-overlay" role="status" aria-live="polite" aria-hidden="true">
+    <div class="loading-brand">
+      <img class="loading-logo" src="/asset/NST%20LOGO.png" alt="">
+      <strong class="loading-name">NST Register</strong>
+      <span class="loading-caption">Please wait</span>
+      <span class="loading-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    </div>
+  </div>
+
+  <!-- Gradient background -->
+  <div class="login-bg" aria-hidden="true">
+    <span class="bg-blob blob-blue"></span>
+    <span class="bg-blob blob-violet"></span>
+    <span class="bg-blob blob-cyan"></span>
+    <span class="bg-grain"></span>
+  </div>
+
+  <main class="login-shell">
+
+    <!-- Left: brand and message -->
+    <section class="login-art">
+      <a class="brand brand-light" href="/login/">
+        <img class="brand-logo" src="/asset/NST%20LOGO.png" alt="NST Register logo">
+        <span class="brand-name">NST Register</span>
+      </a>
+
+      <div class="art-copy">
+        <span class="eyebrow">YOUR EVENT, WELL MANAGED</span>
+        <h1>Make every<br>arrival count.</h1>
+        <p>A smoother welcome starts with a simpler check-in.</p>
+      </div>
+
+      <div class="art-foot">
+        <span>✳</span>&nbsp; Thoughtfully made for the moments that matter
+      </div>
+
+      <div class="art-orb orb-one"></div>
+      <div class="art-orb orb-two"></div>
+    </section>
+
+    <!-- Right: sign-in card -->
+    <section class="login-panel">
+      <div class="login-card">
+        <span class="eyebrow">WELCOME BACK</span>
+        <h2>Sign in to your account</h2>
+        <p class="login-intro">Enter your details to continue to your workspace.</p>
+
+        <form id="login-form">
+          <label for="username">Username</label>
+          <input id="username" name="username" autocomplete="username" placeholder="e.g. ama.owusu" required>
+
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+
+          <div id="form-error" class="form-error" role="alert"></div>
+
+          <button class="button button-primary login-submit" type="submit">
+            Sign in <span>→</span>
+          </button>
+        </form>
+
+        <p class="login-note">Need an account? Ask your administrator to create one.</p>
+      </div>
+
+      <span class="panel-foot">© NST Register</span>
+    </section>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="/config.js"></script>
+  <script src="/static/js/loading.js"></script>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/login.js"></script>
+</body>
+
+</html>
