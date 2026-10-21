@@ -17,9 +17,9 @@ services:
       - key: FRONTEND_URL
         sync: false
       - key: ADMIN_USERNAME
-        sync: false
+        value: "damedzie4"
       - key: ADMIN_EMAIL
-        sync: false
+        value: "damedzie4@gmail.com"
       - key: ADMIN_PASSWORD
         sync: false
       - key: DATABASE_URL
